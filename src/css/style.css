@@ -1,0 +1,24 @@
+@font-face {
+    font-family: "Carbon Droid";
+    src: url(../assets/fonts/CARBON-DROID.ttf) format("truetype");
+}
+   
+
+html, body {
+    height: 100%;
+    margin: 0em;
+}
+
+body {
+    background-color: blue;
+}
+
+h1 {
+    font-family: "Carbon Droid";
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

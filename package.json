@@ -1,0 +1,33 @@
+{
+  "name": "enzo_and_elise_js",
+  "version": "1.0.0",
+  "description": "Enzo and Elise made with Javascript and Webpack",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack serve --open --config webpack.config.dev.js",
+    "prod": "webpack --config webpack.config.prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BillySwaggyKidy/Enzo_and_Elise_JS.git"
+  },
+  "keywords": ["Hand recognition","HMR","HTML","CSS","Javascript"],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BillySwaggyKidy/Enzo_and_Elise_JS/issues"
+  },
+  "homepage": "https://github.com/BillySwaggyKidy/Enzo_and_Elise_JS#readme",
+  "dependencies": {
+    "core-js": "^3.25.0"
+  },
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.10.1"
+  }
+}

@@ -10,14 +10,15 @@ html, body {
 }
 
 body {
-    background-color: blue;
+    background-color: red;
 }
 
-h1 {
+p {
     font-family: "Carbon Droid";
 }
 
 #root {
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;

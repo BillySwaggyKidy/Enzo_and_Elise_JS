@@ -11,7 +11,13 @@
     "type": "git",
     "url": "git+https://github.com/BillySwaggyKidy/Enzo_and_Elise_JS.git"
   },
-  "keywords": ["Hand recognition","HMR","HTML","CSS","Javascript"],
+  "keywords": [
+    "Hand recognition",
+    "HMR",
+    "HTML",
+    "CSS",
+    "Javascript"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -19,7 +25,8 @@
   },
   "homepage": "https://github.com/BillySwaggyKidy/Enzo_and_Elise_JS#readme",
   "dependencies": {
-    "core-js": "^3.25.0"
+    "core-js": "^3.25.0",
+    "handtrackjs": "^0.1.5"
   },
   "devDependencies": {
     "css-loader": "^6.7.1",

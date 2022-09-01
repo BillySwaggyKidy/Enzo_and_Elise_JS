@@ -23,3 +23,12 @@ p {
     flex-direction: column;
     align-items: center;
 }
+
+/* TODO médias queries adapter la taille de l'écran à la taille du canvas*/
+#canvas{
+    width : 1920px;
+    height : 1080px;
+    margin : auto;
+    padding : 0;
+    border : none;
+}

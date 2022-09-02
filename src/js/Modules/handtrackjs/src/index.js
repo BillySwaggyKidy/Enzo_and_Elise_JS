@@ -427,44 +427,6 @@ export class ObjectDetection {
         context.beginPath();
         context.fillStyle = "rgba(255, 255, 255, 0.6)";
 
-        /*context.fillRect(
-          pred.bbox[0] + 1,
-          pred.bbox[1] + 1,
-          pred.bbox[2] - 1,
-          this.modelParams.fontSize * 1.5
-        );*/
-        //context.lineWidth = this.modelParams.bboxLineWidth;
-        // context.rect(...pred.bbox);
-        // Déssine le rectangle qui entoure la partie du corp détectée
-        /*this.roundRect(
-          context,
-          pred.bbox[0],
-          pred.bbox[1],
-          pred.bbox[2],
-          pred.bbox[3],
-          5,
-          false,
-          true
-        );*/
-
-        // draw a dot at the center of bounding box
-          //Change la couleur des rounded box en fonction de la nature du geste.
-        // context.lineWidth = 1;
-        //context.strokeStyle = colorMap[pred.label];
-        //context.fillStyle = colorMap[pred.label];
-
-        //draw dot at center of each bounding box
-       /* context.stroke();
-        context.beginPath();
-        context.arc(
-          pred.bbox[0] + pred.bbox[2] / 2,
-          pred.bbox[1] + pred.bbox[3] / 2,
-          2,
-          0,
-          2 * Math.PI
-        );
-        context.fill();*/
-
         //draw label in each box
         context.stroke();
         context.fillText(
@@ -477,24 +439,6 @@ export class ObjectDetection {
 
     // FPS background
     context.fillStyle = "rgba(255, 255, 255, 0.6)";
-    // Zone dans laquelle ou sont écris les FPS, ci-dessous)
-    // context.fillRect(5, 5, 80, 24);
-    /*this.roundRect(
-      context,
-      10,
-      10,
-      this.modelParams.fontSize * 4.6,
-      this.modelParams.fontSize + 8,
-      5,
-      true,
-      false
-    );*/
-    // Write FPS to top left
-    // context.stroke();
-    // context.strokeStyle = "#374151";
-    // context.fillStyle = "#374151";
-    // context.font = "bold " + this.modelParams.fontSize + "px Arial";
-    // context.fillText("FPS: " + this.fps, 18, this.modelParams.fontSize + 12);
   }
 
   dispose() {

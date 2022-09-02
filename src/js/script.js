@@ -17,6 +17,34 @@ let yStart = 250;
 //Ecarts
 let spaceSamePlayer = 10;
 let spaceDifPlayer = 140;
+//Détection de différences (catch)
+let moveZero = new Object();
+let moveOne = new Object();
+let moveTwo = new Object();
+let moveTree = new Object();
+let moveFour = new Object();
+let moveFive = new Object();
+
+//Initialisations des mouvements
+moveZero.first = "";
+moveZero.second = "";
+
+moveOne.first = "";
+moveOne.second = "";
+
+moveTwo.first = "";
+moveTwo.second = "";
+
+moveTree.first = "";
+moveTree.second = "";
+
+moveFour.first = "";
+moveFour.second = "";
+
+moveFive.first = "";
+moveFive.second = "";
+
+
 // https://victordibia.com/handtrack.js/#/
 // document.getElementById("Canvas").addEventListener("click", ()=>{
 // handTrack.stopVideo
@@ -90,7 +118,8 @@ function runDetection() {
         //On dessines les zones de sélection
         //#Joueur gauche
         //Main gauche
-
+//TODO Essayer de sortir la construction des zones jeu de la detection.
+//TODO Voir la récurence d'appel
         model.roundRect(
             context,
             xStart,
@@ -136,60 +165,105 @@ function runDetection() {
             true
         );
         // x0, y0, ?width,?heigth 
-        if (predictions[0] != undefined && predictions[0].label == "open") {
-            if (predictions[0].bbox[0] < 200 && predictions[0].bbox[1] > 310) {
-                console.log("Y===>");
-                console.log(predictions[0].bbox[1]);
-                console.log("VIVES LES CHAMPIGONS 0")
-            } else {
-
+        if (predictions[0] != undefined) {
+            let x = predictions[0].bbox[0];
+            let y = predictions[0].bbox[1];
+            let label = predictions[0].label;
+            //TODO Detection des autres zones
+            if (x > xStart && x < xZone+1 && y > yStart && y < yStart + yZone) {
+                filePopulator(moveZero, label, 1 );
+            }else if( x > xZone + spaceSamePlayer && x < ((xZone*2) + spaceSamePlayer) +1 && y > yStart && y < yStart + yZone){
+                filePopulator(moveZero, label, 2);
+            }else if( x > (xZone*2) + spaceSamePlayer + spaceDifPlayer && x < ((xZone*3) + spaceSamePlayer + spaceDifPlayer)+1 && y > yStart && y < yStart + yZone){
+                filePopulator(moveZero, label, 3);
+            }else if( x > (xZone*3) + (spaceSamePlayer*2) + spaceDifPlayer && y > yStart && y < yStart + yZone){
+                filePopulator(moveZero, label, 4);
             }
+              
+        } else {
+            filePopulator(moveZero, undefined);
         }
-        //TODO, test entrer dans une case.
-        if (predictions[1] != undefined && predictions[1].label == "closed") {
-            
+
+        if (predictions[1] != undefined) {
             let x = predictions[1].bbox[0];
             let y = predictions[1].bbox[1];
-            if (x > 0 && x < 121 && y > yStart && y < yStart + yZone) {
-                console.log("VIVES LES CHAMPIGONS 1")
-            } else {
-
+            let label = predictions[1].label;
+            if (x > xStart && x < xZone+1 && y > yStart && y < yStart + yZone) {
+                filePopulator(moveOne, label, 1 );
+            }else if( x > xZone + spaceSamePlayer && x < ((xZone*2) + spaceSamePlayer) +1 && y > yStart && y < yStart + yZone){
+                filePopulator(moveOne, label, 2);
+            }else if( x > (xZone*2) + spaceSamePlayer + spaceDifPlayer && x < ((xZone*3) + spaceSamePlayer + spaceDifPlayer)+1 && y > yStart && y < yStart + yZone){
+                filePopulator(moveOne, label, 3);
+            }else if( x > (xZone*3) + (spaceSamePlayer*2) + spaceDifPlayer && y > yStart && y < yStart + yZone){
+                filePopulator(moveOne, label, 4);
             }
+        }else{
+            filePopulator(moveOne, undefined);
         }
         if (predictions[2] != undefined && predictions[2].label == "open") {
-            if (predictions[2].bbox[0] < 200) {
-                console.log("VIVES LES CHAMPIGONS 2")
-            } else {
-
+            let x = predictions[2].bbox[0];
+            let y = predictions[2].bbox[1];
+            let label = predictions[2].label;
+            if (x > xStart && x < xZone+1 && y > yStart && y < yStart + yZone) {
+                filePopulator(moveTwo, label, 1 );
+            }else if( x > xZone + spaceSamePlayer && x < ((xZone*2) + spaceSamePlayer) +1 && y > yStart && y < yStart + yZone){
+                filePopulator(moveTwo, label, 2);
+            }else if( x > (xZone*2) + spaceSamePlayer + spaceDifPlayer && x < ((xZone*3) + spaceSamePlayer + spaceDifPlayer)+1 && y > yStart && y < yStart + yZone){
+                filePopulator(moveTwo, label, 3);
+            }else if( x > (xZone*3) + (spaceSamePlayer*2) + spaceDifPlayer && y > yStart && y < yStart + yZone){
+                filePopulator(moveTwo, label, 4);
             }
+        }else{
+            filePopulator(moveTwo, undefined);
         }
+        
         if (predictions[3] != undefined && predictions[3].label == "open") {
-            if (predictions[3].bbox[0] < 200) {
-                console.log("VIVES LES CHAMPIGONS 3")
-            } else {
-
+            let x = predictions[3].bbox[0];
+            let y = predictions[3].bbox[1];
+            let label = predictions[3].label;
+            if (x > xStart && x < xZone+1 && y > yStart && y < yStart + yZone) {
+                filePopulator(moveTree, label, 1 );
+            }else if( x > xZone + spaceSamePlayer && x < ((xZone*2) + spaceSamePlayer) +1 && y > yStart && y < yStart + yZone){
+                filePopulator(moveTree, label, 2);
+            }else if( x > (xZone*2) + spaceSamePlayer + spaceDifPlayer && x < ((xZone*3) + spaceSamePlayer + spaceDifPlayer)+1 && y > yStart && y < yStart + yZone){
+                filePopulator(moveTree, label, 3);
+            }else if( x > (xZone*3) + (spaceSamePlayer*2) + spaceDifPlayer && y > yStart && y < yStart + yZone){
+                filePopulator(moveTree, label, 4);
             }
+        }else{
+            filePopulator(moveTree, undefined);
         }
         if (predictions[4] != undefined && predictions[4].label == "open") {
-            if (predictions[4].bbox[0] < 200) {
-                console.log("VIVES LES CHAMPIGONS 4")
-            } else {
-
+            let x = predictions[4].bbox[0];
+            let y = predictions[4].bbox[1];
+            let label = predictions[4].label;
+            if (x > xStart && x < xZone+1 && y > yStart && y < yStart + yZone) {
+                filePopulator(moveFour, label, 1 );
+            }else if( x > xZone + spaceSamePlayer && x < ((xZone*2) + spaceSamePlayer) +1 && y > yStart && y < yStart + yZone){
+                filePopulator(moveFour, label, 2);
+            }else if( x > (xZone*2) + spaceSamePlayer + spaceDifPlayer && x < ((xZone*3) + spaceSamePlayer + spaceDifPlayer)+1 && y > yStart && y < yStart + yZone){
+                filePopulator(moveFour, label, 3);
+            }else if( x > (xZone*3) + (spaceSamePlayer*2) + spaceDifPlayer && y > yStart && y < yStart + yZone){
+                filePopulator(moveFour, label, 4);
             }
+        }else{
+            filePopulator(moveFour, undefined);
         }
         if (predictions[5] != undefined && predictions[5].label == "open") {
-            if (predictions[5].bbox[0] < 200) {
-                console.log("VIVES LES CHAMPIGONS 5")
-            } else {
-
+            let x = predictions[5].bbox[0];
+            let y = predictions[5].bbox[1];
+            let label = predictions[5].label;
+            if (x > xStart && x < xZone+1 && y > yStart && y < yStart + yZone) {
+                filePopulator(moveFive, label, 1 );
+            }else if( x > xZone + spaceSamePlayer && x < ((xZone*2) + spaceSamePlayer) +1 && y > yStart && y < yStart + yZone){
+                filePopulator(moveFive, label, 2);
+            }else if( x > (xZone*2) + spaceSamePlayer + spaceDifPlayer && x < ((xZone*3) + spaceSamePlayer + spaceDifPlayer)+1 && y > yStart && y < yStart + yZone){
+                filePopulator(moveFive, label, 3);
+            }else if( x > (xZone*3) + (spaceSamePlayer*2) + spaceDifPlayer && y > yStart && y < yStart + yZone){
+                filePopulator(moveFive, label, 4);
             }
-        }
-        if (predictions[6] != undefined && predictions[6].label == "open") {
-            if (predictions[6].bbox[0] < 200) {
-                console.log("VIVES LES CHAMPIGONS 6")
-            } else {
-
-            }
+        }else{
+            filePopulator(moveFive, undefined);
         }
 
         if (isVideo) {
@@ -198,5 +272,30 @@ function runDetection() {
     });
 }
 
+/**
+ * @Param move -> Objet de l'historique de mouvement de la prédiction en question.
+ * @Param label ->Label associé à la prédiction.
+ **/
+const filePopulator = (move, label, zone) => {
+    //On est en dehors de la zone 
+    if(label == undefined){
+        //On vide la liste d'attente
+        move.first = "";
+        move.second = "";
+        return;
+    }
+      //On set les listes d'attente de la prédiction 1.
+      if(move.first != ""){
+        move.second = label == "closed"? label : "";
+    }else{
+        move.first = label == "open" || label == "point"? label : "";
+    }
+    //On vérifie si il y a eut un catch
+    if(move.first != "" && move.second != ""){
+        console.log("CATCH DETECTED ZONE "+ zone);
+        move.first = "";
+        move.second = "";
+    }
+};
 //On lance la caméra
 launchWebcamVideo();

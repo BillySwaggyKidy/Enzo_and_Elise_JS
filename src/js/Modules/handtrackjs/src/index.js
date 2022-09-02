@@ -418,6 +418,10 @@ export class ObjectDetection {
     // console.log('number of detections: ', predictions.length);
     for (let i = 0; i < predictions.length; i++) {
       const pred = predictions[i];
+      // On n'affiche plus les faces
+      if(pred.label === "face"){
+        continue;
+      }
       // console.log(pred.score, renderThresholds[pred.label]);
       if (!renderThresholds || pred.score > renderThresholds[pred.label]) {
         context.beginPath();
@@ -444,10 +448,10 @@ export class ObjectDetection {
         );*/
 
         // draw a dot at the center of bounding box
-
+          //Change la couleur des rounded box en fonction de la nature du geste.
         // context.lineWidth = 1;
-        context.strokeStyle = colorMap[pred.label];
-        context.fillStyle = colorMap[pred.label];
+        //context.strokeStyle = colorMap[pred.label];
+        //context.fillStyle = colorMap[pred.label];
 
         //draw dot at center of each bounding box
        /* context.stroke();

@@ -8,7 +8,15 @@ let canvas;
 let context;
 let isVideo = false;
 let model = null;
-
+//Une zone de jeu
+let xZone = 120;
+let yZone = 100;
+//Debut
+let xStart = 0;
+let yStart = 250;
+//Ecarts
+let spaceSamePlayer = 10;
+let spaceDifPlayer = 140;
 // https://victordibia.com/handtrack.js/#/
 // document.getElementById("Canvas").addEventListener("click", ()=>{
 // handTrack.stopVideo
@@ -30,7 +38,7 @@ const defaultParams = {
 handTrack.load(defaultParams).then(lmodel => {
     // detect objects in the image.
     model = lmodel;
-    document.getElementById("video-button").disabled = false
+    document.getElementById("video-button").disabled = false;
 });
 
 let h1 = document.createElement("h1");
@@ -54,9 +62,10 @@ const launchWebcamVideo = () => {
         context = canvas.getContext("2d");
         video = document.getElementById("myvideo");
         startVideo();
+
+
     }
-    else
-    {
+    else {
         isVideo = false;
         handTrack.stopVideo(video);
     }
@@ -64,13 +73,11 @@ const launchWebcamVideo = () => {
 
 const startVideo = () => {
     handTrack.startVideo(video).then((status) => {
-        if (status)
-        {
+        if (status) {
             isVideo = true;
             runDetection();
         }
-        else
-        {
+        else {
             //Error while starting the video;
         }
     });
@@ -80,57 +87,107 @@ function runDetection() {
     model.detect(video).then(predictions => {
         //console.log("Predictions: ", predictions);
         model.renderPredictions(predictions, canvas, context, video);
+        //On dessines les zones de sélection
+        //#Joueur gauche
+        //Main gauche
+
+        model.roundRect(
+            context,
+            xStart,
+            yStart,
+            xZone,
+            yZone,
+            5,
+            false,
+            true
+        );
+        //Main droite
+        model.roundRect(
+            context,
+            xStart + xZone + spaceSamePlayer,
+            yStart,
+            xZone,
+            yZone,
+            5,
+            false,
+            true
+        );
+        //#Joueur droit
+        //Main gauche
+        model.roundRect(
+            context,
+            xStart + (xZone * 2) + spaceSamePlayer + spaceDifPlayer,
+            yStart,
+            xZone,
+            yZone,
+            5,
+            false,
+            true
+        );
+        //Main droite
+        model.roundRect(
+            context,
+            xStart + (xZone * 3) + (spaceSamePlayer * 2) + spaceDifPlayer,
+            yStart,
+            xZone,
+            yZone,
+            5,
+            false,
+            true
+        );
         // x0, y0, ?width,?heigth 
-        if(predictions[0] != undefined && predictions[0].label == "open"){
-            if(predictions[0].bbox[0]  < 200 && predictions[0].bbox[1]  > 310 ){
+        if (predictions[0] != undefined && predictions[0].label == "open") {
+            if (predictions[0].bbox[0] < 200 && predictions[0].bbox[1] > 310) {
                 console.log("Y===>");
                 console.log(predictions[0].bbox[1]);
                 console.log("VIVES LES CHAMPIGONS 0")
-            }else{
+            } else {
 
             }
         }
-        if(predictions[1] != undefined && predictions[1].label == "open"){
-            if(predictions[1].bbox[0]  < 200 && predictions[1].bbox[1]  > 310 ){
-                console.log("Y===>");
-                console.log(predictions[1].bbox[1]);
+        //TODO, test entrer dans une case.
+        if (predictions[1] != undefined && predictions[1].label == "closed") {
+            
+            let x = predictions[1].bbox[0];
+            let y = predictions[1].bbox[1];
+            if (x > 0 && x < 121 && y > yStart && y < yStart + yZone) {
                 console.log("VIVES LES CHAMPIGONS 1")
-            }else{
+            } else {
 
             }
         }
-        if(predictions[2] != undefined && predictions[2].label == "open"){
-            if(predictions[2].bbox[0]  < 200 ){
+        if (predictions[2] != undefined && predictions[2].label == "open") {
+            if (predictions[2].bbox[0] < 200) {
                 console.log("VIVES LES CHAMPIGONS 2")
-            }else{
+            } else {
 
             }
-        }     
-        if(predictions[3] != undefined && predictions[3].label == "open"){
-            if(predictions[3].bbox[0]  < 200 ){
+        }
+        if (predictions[3] != undefined && predictions[3].label == "open") {
+            if (predictions[3].bbox[0] < 200) {
                 console.log("VIVES LES CHAMPIGONS 3")
-            }else{
+            } else {
 
             }
         }
-        if(predictions[4] != undefined && predictions[4].label == "open"){
-            if(predictions[4].bbox[0]  < 200 ){
+        if (predictions[4] != undefined && predictions[4].label == "open") {
+            if (predictions[4].bbox[0] < 200) {
                 console.log("VIVES LES CHAMPIGONS 4")
-            }else{
+            } else {
 
             }
         }
-        if(predictions[5] != undefined && predictions[5].label == "open"){
-            if(predictions[5].bbox[0]  < 200 ){
+        if (predictions[5] != undefined && predictions[5].label == "open") {
+            if (predictions[5].bbox[0] < 200) {
                 console.log("VIVES LES CHAMPIGONS 5")
-            }else{
+            } else {
 
             }
         }
-        if(predictions[6] != undefined && predictions[6].label == "open"){
-            if(predictions[6].bbox[0]  < 200 ){
+        if (predictions[6] != undefined && predictions[6].label == "open") {
+            if (predictions[6].bbox[0] < 200) {
                 console.log("VIVES LES CHAMPIGONS 6")
-            }else{
+            } else {
 
             }
         }

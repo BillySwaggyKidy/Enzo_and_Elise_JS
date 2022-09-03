@@ -90,8 +90,6 @@ const launchWebcamVideo = () => {
         context = canvas.getContext("2d");
         video = document.getElementById("myvideo");
         startVideo();
-
-
     }
     else {
         isVideo = false;

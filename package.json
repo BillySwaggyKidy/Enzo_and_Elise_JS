@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "Enzo and Elise made with Javascript and Webpack",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack serve --open --config webpack.config.dev.js",
-    "prod": "webpack --config webpack.config.prod.js"
-  },
+    "build": "webpack",
+    "start": "webpack-dev-server --port 8080"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BillySwaggyKidy/Enzo_and_Elise_JS.git"
@@ -25,25 +24,28 @@
   },
   "homepage": "https://github.com/BillySwaggyKidy/Enzo_and_Elise_JS#readme",
   "dependencies": {
-    "core-js": "^3.25.0",
     "@tensorflow/tfjs": "3.3.0",
     "@tensorflow/tfjs-converter": "3.3.0",
-    "copy-webpack-plugin": "^8.1.1"
+    "core-js": "^3.25.0"
   },
   "devDependencies": {
-    "css-loader": "^6.7.1",
-    "html-webpack-plugin": "^5.5.0",
-    "mini-css-extract-plugin": "^2.6.1",
-    "style-loader": "^3.3.1",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.10.1",
+    "@babylonjs/core": "^5.22.1",
+    "@babylonjs/inspector": "^5.22.1",
     "@types/jasmine": "~2.8.8",
     "babel-core": "~6.26.0",
     "babel-plugin-transform-runtime": "~6.23.0",
     "babel-preset-env": "^1.7.0",
     "cross-env": "^5.1.1",
+    "css-loader": "^6.7.1",
     "cssnano": "^4.1.8",
-    "gh-pages": "^1.1.0"
+    "gh-pages": "^1.1.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "style-loader": "^3.3.1",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.8.2",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.10.1"
   }
 }
